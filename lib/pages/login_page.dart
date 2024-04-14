@@ -34,6 +34,7 @@ class _LoginPageState extends State<LoginPage> {
               _titleWidget(),
               _loginForm(),
               _loginButton(),
+              _registerpagelink(),
             ],
           ),
         ),
@@ -106,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _loginButton() {
     return MaterialButton(
-      onPressed: () {},
+      onPressed: _loginUser,
       minWidth: _deviceWidth! * 0.7,
       height: _deviceHeight! * 0.06,
       color: Colors.red,
@@ -116,5 +117,19 @@ class _LoginPageState extends State<LoginPage> {
             color: Colors.white, fontSize: 25, fontWeight: FontWeight.w600),
       ),
     );
+  }
+
+  Widget _registerpagelink(){
+    return GestureDetector(
+      onTap: ()=> Navigator.pushNamed(context, 'register'),
+      child: Text("Don't have an account?", style: TextStyle(color: Colors.blue, fontSize: 15, fontWeight: FontWeight.w400,),),
+    );
+  }
+
+  void _loginUser() {
+    // print(_loginFormKey.currentState!.validate());
+    if(_loginFormKey.currentState!.validate()){
+        _loginFormKey.currentState!.save();
+    }
   }
 }
